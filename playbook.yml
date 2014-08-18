@@ -1,0 +1,17 @@
+---
+- hosts: all
+  user: vagrant
+  sudo: yes
+  tasks:
+    - name: instalando o git
+      apt: pkg=git state=installed update_cache=true
+    - name: instalando o node.js
+      apt: pkg=nodejs state=installed update_cache=true
+    - name: instalando o npm
+      apt: pkg=npm state=installed update_cache=true
+    - name: instalando o cordova
+      command: sudo npm install -g cordova
+    - name: instalando o ionic
+      command: sudo npm install -g ionic
+    - name: instalando o ionic
+      command: sudo ln -s /usr/bin/nodejs /usr/bin/node
