@@ -1,32 +1,48 @@
 
 ================================
-Ionic Template for Ubuntu 14.04
+Ionic Template para Ubuntu 14.04
 ================================
 
-My vagrant files to setup development environment for [ionic](http://ionicframework.com/).
+Arquivos do vagrant para ambiente de desenvolvimento do [ionic](http://ionicframework.com/).
 
 
-Installation:
+Como usar:
 -------------
 
-Download and install [virtualbox](http://www.virtualbox.org/)
+Instale [virtualbox](http://www.virtualbox.org/)
 
-Download and install [vagrant](http://vagrantup.com/)
+Instale [vagrant](http://vagrantup.com/)
 
-Download and install [ansible](http://www.ansible.com/home)
+Instale o plugin [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) do vagrant
 
-Clone this repository
+Instale [ansible](http://www.ansible.com/home)
 
-Go to the repository folder and launch the box
+Clone esse repositório
+
+Entre no diretorio do repositório, levante a box e acesse via ssh
 
     $ cd [repo]
-    $ vagrant up
+    $ vagrant up --provision
     $ vagrant ssh -- -Y
 
-Notes:
+Notas:
 ------
-Add variables to local bashrc
+Adicionar as variáveis do android sdk ao bashrc local.
     $ cat bashrc >> ~/.bashrc
 
-Run android to choice and install a Android SDK
+Rode o android e escolha qual sdk deseja instalar.
     $ android
+
+Customize o vagrant file para ter acesso a sua usb.
+    Vagrant.configure("2") do |config|
+      ...
+      config.vm.provider "virtualbox" do |vb|
+        ...
+        vb.customize ["modifyvm", :id, "--usb", "on"]
+        vb.customize ["usbfilter", "add", "0", "--target", :id, "--name", "android", "--vendorid", "######"]
+        ...
+      end
+      ...
+    end
+
+Faça o [guide](http://ionicframework.com/docs/guide/), get up and enjoy.
