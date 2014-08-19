@@ -20,20 +20,23 @@ Instale [ansible](http://www.ansible.com/home)
 Clone esse repositório
 
 Entre no diretorio do repositório, levante a box e acesse via ssh
-
+```bash
     $ cd [repo]
     $ vagrant up --provision
     $ vagrant ssh -- -Y
-
+```
 Notas:
 ------
 Adicionar as variáveis do android sdk ao bashrc local.
+```bash
     $ cat bashrc >> ~/.bashrc
-
+```
 Rode o android e escolha qual sdk deseja instalar.
+```bash
     $ android
-
+```
 Customize o vagrant file para ter acesso a sua usb.
+```ruby    
     Vagrant.configure("2") do |config|
       ...
       config.vm.provider "virtualbox" do |vb|
@@ -44,5 +47,5 @@ Customize o vagrant file para ter acesso a sua usb.
       end
       ...
     end
-
+```
 Faça o [guide](http://ionicframework.com/docs/guide/), get up and enjoy.
