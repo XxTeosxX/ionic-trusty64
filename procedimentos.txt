@@ -1,0 +1,4 @@
+## instala sdk do android 19
+android update sdk --no-ui --all --filter "android-19"
+##instala o image da api 19 pelo instalador gragico
+#android update sdk --no-ui --all --filter

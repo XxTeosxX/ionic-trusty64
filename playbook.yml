@@ -9,6 +9,7 @@
       shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
     - name: instalando o java7
       apt: pkg=oracle-java7-set-default state=installed update-cache=yes force=yes
+      apt: pgk=libswt-gtk-3-java state=installed update-cache=yes force=yes
 
     - name: adicionando repositorio do android-studio
       apt_repository: repo=ppa:paolorotolo/android-studio  state=present
@@ -35,3 +36,6 @@
     - name: adicionando necessidades para o build
       apt: pkg=lib32z1 state=installed update_cache=true
       apt: pkg=lib32stdc++6 state=installed update_cache=true
+
+    - name: adicionando necessidades para a emulação
+      apt: pkg=libgl1-mesa-dev state=installed update_cache=true
