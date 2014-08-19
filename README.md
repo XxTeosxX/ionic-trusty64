@@ -3,7 +3,7 @@
 Ionic Template para Ubuntu 14.04
 ================================
 
-Arquivos do vagrant para ambiente de desenvolvimento do [ionic](http://ionicframework.com/).
+Arquivos do vagrant para ambiente de desenvolvimento de projetos [ionic](http://ionicframework.com/).
 
 
 Como usar:
@@ -17,7 +17,7 @@ Instale o plugin [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest
 
 Instale [ansible](http://www.ansible.com/home)
 
-Clone esse repositório
+Clone este repositório
 
 Entre no diretorio do repositório, levante a box e acesse via ssh
 ```bash
@@ -35,7 +35,7 @@ Rode o android e escolha qual sdk deseja instalar.
 ```bash
     $ android
 ```
-Customize o vagrant file para ter acesso a sua usb.
+Customize o Vagrantfile para ter acesso as portas usb.
 ```ruby    
     Vagrant.configure("2") do |config|
       ...
@@ -48,4 +48,5 @@ Customize o vagrant file para ter acesso a sua usb.
       ...
     end
 ```
-Faça o [guide](http://ionicframework.com/docs/guide/), get up and enjoy.
+Faça o [guide](http://ionicframework.com/docs/guide/) do ionic.
+GET UP AND ENJOY.
