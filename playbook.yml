@@ -24,8 +24,8 @@
       apt: pkg=nodejs state=installed update_cache=true
     - name: instalando o npm
       apt: pkg=npm state=installed update_cache=true
-    #- name: instalando o ionic
-    #  command: sudo ln -s /usr/bin/nodejs /usr/bin/node
+    - name: instalando o ionic
+      command: sudo ln -s -f /usr/bin/nodejs /usr/bin/node
 
     - name: instalando o cordova
       command: sudo npm install -g cordova
@@ -34,5 +34,4 @@
 
     - name: adicionando necessidades para o build
       apt: pkg=lib32z1 state=installed update_cache=true
-    #   command: sudo apt-get -qqy update
-    #   command: sudo apt-get -qqy install libncurses5:i386 libstdc++6:i386 zlib1g:i386
+      apt: pkg=lib32stdc++6 state=installed update_cache=true
