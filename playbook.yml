@@ -3,15 +3,36 @@
   user: vagrant
   sudo: yes
   tasks:
+    - name: adicionando repositorio do java7
+      apt_repository: repo=ppa:webupd8team/java state=present
+    - name: Automatically select the Oracle License
+      shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+    - name: instalando o java7
+      apt: pkg=oracle-java7-set-default state=installed update-cache=yes force=yes
+
+    - name: adicionando repositorio do android-studio
+      apt_repository: repo=ppa:paolorotolo/android-studio  state=present
+    - name: instalando o android-studio
+      apt: pkg=android-studio state=installed update-cache=yes force=yes
+
     - name: instalando o git
       apt: pkg=git state=installed update_cache=true
+    - name: instalando o ant
+      apt: pkg=ant state=installed update_cache=true
+
     - name: instalando o node.js
       apt: pkg=nodejs state=installed update_cache=true
     - name: instalando o npm
       apt: pkg=npm state=installed update_cache=true
+    #- name: instalando o ionic
+    #  command: sudo ln -s /usr/bin/nodejs /usr/bin/node
+
     - name: instalando o cordova
       command: sudo npm install -g cordova
     - name: instalando o ionic
       command: sudo npm install -g ionic
-    - name: instalando o ionic
-      command: sudo ln -s /usr/bin/nodejs /usr/bin/node
+
+    - name: adicionando necessidades para o build
+      apt: pkg=lib32z1 state=installed update_cache=true
+    #   command: sudo apt-get -qqy update
+    #   command: sudo apt-get -qqy install libncurses5:i386 libstdc++6:i386 zlib1g:i386
