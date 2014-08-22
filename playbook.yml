@@ -8,8 +8,10 @@
     - name: Automatically select the Oracle License
       shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
     - name: instalando o java7
-      apt: pkg=oracle-java7-set-default state=installed update-cache=yes force=yes
-      apt: pgk=libswt-gtk-3-java state=installed update-cache=yes force=yes
+      action: apt pkg={{item}} state=installed update-cache=yes force=yes
+      with_items:
+        - oracle-java7-set-default
+        - libswt-gtk-3-java
 
     - name: adicionando repositorio do android-studio
       apt_repository: repo=ppa:paolorotolo/android-studio  state=present
@@ -25,7 +27,7 @@
       apt: pkg=nodejs state=installed update_cache=true
     - name: instalando o npm
       apt: pkg=npm state=installed update_cache=true
-    - name: instalando o ionic
+    - name: criando link de nodejs para node
       command: sudo ln -s -f /usr/bin/nodejs /usr/bin/node
 
     - name: instalando o cordova
@@ -34,8 +36,10 @@
       command: sudo npm install -g ionic
 
     - name: adicionando necessidades para o build
-      apt: pkg=lib32z1 state=installed update_cache=true
-      apt: pkg=lib32stdc++6 state=installed update_cache=true
+      action: apt pkg={{item}} state=installed update-cache=yes force=yes
+      with_items:
+        - lib32z1
+        - lib32stdc++6
 
     - name: adicionando necessidades para a emulação
       apt: pkg=libgl1-mesa-dev state=installed update_cache=true
