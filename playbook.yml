@@ -18,6 +18,8 @@
 
     - unarchive: src=/tmp/android-sdk_r23.0.2-linux.tgz dest=/opt copy=no
 
+    - name: dando permições para o grupo vagrant
+      action: command chmod 777 -R  /opt/android-sdk-linux/
 
     - name: instalando o git, ant, nodejs e npm
       action: apt pkg={{item}} state=installed update-cache=yes force=yes
