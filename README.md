@@ -11,9 +11,9 @@ Como usar:
 
 Instale [virtualbox](http://www.virtualbox.org/)
 
-Instale [vagrant](http://vagrantup.com/)
+Adicione ao VirtualBox a extensão [VirtualBox Extension Pack](http://www.virtualbox.org/)
 
-Instale o plugin [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) do vagrant
+Instale [vagrant](http://vagrantup.com/)
 
 Instale [ansible](http://www.ansible.com/home)
 
@@ -23,30 +23,22 @@ Entre no diretorio do repositório, levante a box e acesse via ssh
 ```bash
     $ cd [repo]
     $ vagrant up --provision
-    $ vagrant ssh -- -Y
 ```
 Notas:
 ------
-Adicionar as variáveis do android sdk ao bashrc local.
-```bash
-    $ cat bashrc >> ~/.bashrc
-```
-Rode o android e escolha qual sdk deseja instalar.
-```bash
-    $ android
-```
-Customize o Vagrantfile para ter acesso as portas usb.
-```ruby    
-    Vagrant.configure("2") do |config|
-      ...
-      config.vm.provider "virtualbox" do |vb|
-        ...
-        vb.customize ["modifyvm", :id, "--usb", "on"]
-        vb.customize ["usbfilter", "add", "0", "--target", :id, "--name", "android", "--vendorid", "######"]
-        ...
-      end
-      ...
-    end
-```
+
+É muito melhor compilar a apk direto em um smartphone. Entao permita usb na
+maquina virtual.
+
+![alt tag](https://raw.githubusercontent.com/XxTeosxX/ionic-trusty64/master/img/usb.png)
+
+Logo apos isso é so adicionar o seu [IDVendor](http://developer.android.com/tools/device.html) 
+
+![alt tag](https://raw.githubusercontent.com/XxTeosxX/ionic-trusty64/master/img/adb.png)
+
+
+
+
+
 Faça o [guide](http://ionicframework.com/docs/guide/) do ionic.
 GET UP AND ENJOY.
