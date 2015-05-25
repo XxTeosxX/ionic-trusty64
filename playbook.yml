@@ -3,44 +3,38 @@
   user: vagrant
   sudo: yes
   tasks:
-    - name: instalando o java7
+    - name: install java7
       apt: pkg=default-jdk state=installed update-cache=yes force=yes
 
-    - name: instalando o adb e fastboot do ubuntu
-      action: apt pkg={{item}} state=installed update-cache=yes force=yes
+    - name: install adb and fastboot
+      apt: pkg={{item}} state=installed
       with_items:
         - android-tools-adb
         - android-tools-fastboot
 
-    - name: baixando e extraindo android sdk para opt
-      get_url: url=http://dl.google.com/android/android-sdk_r24.0.2-linux.tgz dest=/tmp/android-sdk-linux.tgz
-
+    - name: install android sdk
+      get_url: url=http://dl.google.com/android/android-sdk_r24.2-linux.tgz dest=/tmp/android-sdk-linux.tgz
     - unarchive: src=/tmp/android-sdk-linux.tgz dest=/opt copy=no
-
-    - name: dando permições para o grupo vagrant
+    - name: permissions for vagrant
       action: command chown vagrant:vagrant -R  /opt/android-sdk-linux/
 
-    - name: instalando o git, ant, nodejs e npm
-      action: apt pkg={{item}} state=installed update-cache=yes force=yes
+    - name: install requirements
+      apt: pkg={{item}} state=installed
       with_items:
         - git
         - ant
         - nodejs
         - npm
-
-    - name: criando link de nodejs para node
-      command: sudo ln -s -f /usr/bin/nodejs /usr/bin/node
-
-    - name: instalando o cordova
-      command: sudo npm install -g cordova
-    - name: instalando o ionic
-      command: sudo npm install -g ionic
-
-    - name: adicionando necessidades para o build
-      action: apt pkg={{item}} state=installed update-cache=yes force=yes
-      with_items:
         - lib32z1
         - lib32stdc++6
+    - name: Nodejs to node
+      command: sudo ln -s -f /usr/bin/nodejs /usr/bin/node
+
+    - name: install cordova and ionic
+      npm: name={{ item }} global=yes state=present
+      with_items:
+        - cordova
+        - ionic
 
 - hosts: all
   user: vagrant
@@ -49,5 +43,5 @@
     - name: set bashrc
       shell: cat /vagrant/bashrc >> /home/vagrant/.bashrc
 
-    - name: atualizando tools , plataform-tools e instalando a api 19
-      shell: echo "y" | /opt/android-sdk-linux/tools/android update sdk --no-ui --filter android-19,build-tools-21.1.2,tool,platform-tool
+    - name: install tools, plataform-tools and api 22
+      shell: echo "y" | /opt/android-sdk-linux/tools/android update sdk --no-ui --filter android-22,build-tools-22.0.1,tool,platform-tool
