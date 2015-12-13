@@ -2,39 +2,17 @@
 - hosts: all
   user: vagrant
   sudo: yes
+  roles:
+        - ansible-java8-oracle
+        - ansible-role-android-sdk
+        - ansible-nodejs-role
+        - ansible-role-ionic
   tasks:
-    - name: install java7
-      apt: pkg=default-jdk state=installed update-cache=yes force=yes
-
     - name: install adb and fastboot
       apt: pkg={{item}} state=installed
       with_items:
         - android-tools-adb
         - android-tools-fastboot
-
-    - name: install android sdk
-      get_url: url=http://dl.google.com/android/android-sdk_r24.2-linux.tgz dest=/tmp/android-sdk-linux.tgz
-    - unarchive: src=/tmp/android-sdk-linux.tgz dest=/opt copy=no
-    - name: permissions for vagrant
-      action: command chown vagrant:vagrant -R  /opt/android-sdk-linux/
-
-    - name: install requirements
-      apt: pkg={{item}} state=installed
-      with_items:
-        - git
-        - ant
-        - nodejs
-        - npm
-        - lib32z1
-        - lib32stdc++6
-    - name: Nodejs to node
-      command: sudo ln -s -f /usr/bin/nodejs /usr/bin/node
-
-    - name: install cordova and ionic
-      npm: name={{ item }} global=yes state=present
-      with_items:
-        - cordova
-        - ionic
 
 - hosts: all
   user: vagrant
@@ -42,6 +20,3 @@
   tasks:
     - name: set bashrc
       shell: cat /vagrant/bashrc >> /home/vagrant/.bashrc
-
-    - name: install tools, plataform-tools and api 22
-      shell: echo "y" | /opt/android-sdk-linux/tools/android update sdk --no-ui --filter android-22,build-tools-22.0.1,tool,platform-tool

@@ -4,3 +4,9 @@
 [submodule "roles/ansible-role-android-sdk"]
 	path = roles/ansible-role-android-sdk
 	url = https://github.com/nickpack/ansible-role-android-sdk
+[submodule "roles/ansible-nodejs-role"]
+	path = roles/ansible-nodejs-role
+	url = https://github.com/nodesource/ansible-nodejs-role
+[submodule "roles/ansible-role-ionic"]
+	path = roles/ansible-role-ionic
+	url = https://github.com/martinmicunda/ansible-role-ionic
