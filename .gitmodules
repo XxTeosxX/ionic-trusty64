@@ -1,0 +1,6 @@
+[submodule "roles/ansible-java8-oracle"]
+	path = roles/ansible-java8-oracle
+	url = https://github.com/malk/ansible-java8-oracle
+[submodule "roles/ansible-role-android-sdk"]
+	path = roles/ansible-role-android-sdk
+	url = https://github.com/nickpack/ansible-role-android-sdk
