@@ -14,7 +14,7 @@
         - android-tools-adb
         - android-tools-fastboot
     - name: Install bower gulp-cli karma-cli phantomjs
-      npm: name={{item}}}  state=present  global=yes
+      npm: name={{item}}  state=present  global=yes
       with_items:
         - bower
         - gulp-cli
